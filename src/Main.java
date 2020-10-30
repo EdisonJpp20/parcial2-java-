@@ -1,5 +1,4 @@
 import Menu.Menu;
-import Persona.Joven;
 
 public class Main {
     public static void main(String[] args){

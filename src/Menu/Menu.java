@@ -144,11 +144,11 @@ public class Menu extends JFrame implements Funciones{
                 rSButtonMaterialGradientShadow2.setText("Eliminar");
                 contentPanel.add(rSButtonMaterialGradientShadow2);
                 rSButtonMaterialGradientShadow2.setBounds(140, 380, 120, 40);
-                rSButtonMaterialGradientShadow2.addActionListener(e -> deletePeople());
+                rSButtonMaterialGradientShadow2.addActionListener(e -> addOrDelete("eliminar"));
 
                 //---- rSButtonMaterialGradientShadow3 ----
                 rSButtonMaterialGradientShadow3.setText("Agregar");
-                rSButtonMaterialGradientShadow3.addActionListener(e -> addPeoppleListenner(e));
+                rSButtonMaterialGradientShadow3.addActionListener(e -> addOrDelete("crear"));
                 contentPanel.add(rSButtonMaterialGradientShadow3);
                 rSButtonMaterialGradientShadow3.setBounds(270, 380, 135, 40);
 
@@ -218,6 +218,8 @@ public class Menu extends JFrame implements Funciones{
 
     @Override
     public void addPeople() {
+
+
         String nombre1 =rSTextFieldOne1.getText() ;
         String apellido1= rSTextFieldOne2.getText() ;
         int  edad1 = (int) spinner1.getValue();
@@ -254,7 +256,7 @@ public class Menu extends JFrame implements Funciones{
                     }
 
                 }else if(selected ==  "Joven"){
-                    persona2 = new Joven(nombre1 , apellido1 , edad1);
+                    persona2 = new Joven(nombre1  , apellido1 , edad1);
                     if(persona2.getNombre().length() > 0){
                         model.addRow(new Object[]{id , persona2.getNombre(), persona2.getApellido(), persona2.getEdad() , persona2.getGeneracion("Joven") });
                         clear();
@@ -289,6 +291,16 @@ public class Menu extends JFrame implements Funciones{
     }
 
     @Override
+    public void addOrDelete(String key) {
+
+         if(key == "crear"){
+             addPeople();
+         }else{
+             deletePeople();
+         }
+    }
+
+    @Override
     public String accionProceso(String key) {
         return key;
     }
@@ -312,6 +324,7 @@ public class Menu extends JFrame implements Funciones{
         rSRadioButtonMaterial2.setSelected(false);
         rSRadioButtonMaterial3.setSelected(false);
     }
+
 
     // JFormDesigner - End of variables declaration  //GEN-END:variables
 }
